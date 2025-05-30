@@ -18,11 +18,15 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  loginUser() {
-    userRepository.login(LoginDTO(
+  loginUser() async {
+    final user = await userRepository.login(LoginDTO(
       email: _emailController.text, 
       password: _passwordController.text
     ));
+
+    if (user != null) {
+      Navigator.pushNamed(context, "/");
+    }
   }
 
   @override
@@ -33,16 +37,23 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 100),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomTextField(
               controller: _emailController, 
               text: "Correo Electronico"
             ),
+            SizedBox(height: 30),
             CustomTextField(
               controller: _passwordController, 
               text: "Contraseña"
             ),
-            Text("Aun no tienes cuenta? Registrate aqui"),
+            SizedBox(height: 10),
+            Text(
+              "Aun no tienes cuenta? Registrate aqui",
+              style: TextStyle(color: Colors.white),
+            ),
+            SizedBox(height: 30),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -52,9 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius: BorderRadius.circular(5)
                   )
                 ),
-                onPressed: () {
-                  
-                }, 
+                onPressed: loginUser,
                 child: Text(
                   "Iniciar Sesion", 
                   style: TextStyle(color: Colors.white)

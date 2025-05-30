@@ -12,5 +12,14 @@ class UserDTO {
     required this.email,
     required this.password
   });
+
+  factory UserDTO.fromJson(Map<String, dynamic> json) {
+    return UserDTO(
+      id: json["id"], 
+      nickname: json["nickname"], 
+      email: json["email"], 
+      password: json["password"]
+    );
+  }
   
 }

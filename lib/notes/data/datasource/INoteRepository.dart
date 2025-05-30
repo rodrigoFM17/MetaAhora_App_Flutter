@@ -1,8 +1,8 @@
 
-import 'package:meta_ahora/notes/data/model/NoteDTO.dart';
+import 'package:meta_ahora/notes/data/model/GoalDTO.dart';
 
 abstract class INoteRepository {
 
-  Future<List<NoteDTO>?> getAll();
+  Future<List<NoteDTO>?> getAll(String userId);
 
 }
