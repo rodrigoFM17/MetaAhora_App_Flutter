@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:meta_ahora/share/widgets/app_bar.dart';
+import 'package:meta_ahora/notes/presentation/widgets/notes_list.dart';
 
 class NotesScreen extends StatelessWidget{
 
@@ -10,7 +12,8 @@ class NotesScreen extends StatelessWidget{
 
     return Scaffold(
       backgroundColor: Color(0xFF232323),
-      body: ,
-    )
+      appBar: getNotesAppBar(context: context, showAddButton: true),
+      body: NotesList(),
+    );
   }
 }
