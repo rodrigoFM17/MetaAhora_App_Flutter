@@ -16,7 +16,10 @@ class GoalList extends StatelessWidget {
       itemBuilder: (context, index) {
         final goal = goals[index];
 
-        return GoalCard(goal: goal);
+        return Padding(
+          padding: EdgeInsets.all(10),
+          child: GoalCard(goal: goal)
+        );
       },
     );
   }
