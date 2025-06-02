@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta_ahora/goals/presentation/blocs/goals_cubit.dart';
+import 'package:meta_ahora/goals/data/model/GoalDTO.dart';
 import 'package:meta_ahora/goals/presentation/widgets/goal_card.dart';
 
 class GoalList extends StatelessWidget {
-  const GoalList({super.key});
 
+  final List<GoalDTO> goals;
+
+  const GoalList({super.key, required this.goals});
 
   @override
   Widget build(BuildContext context) {
 
-    final goalsCubit = context.watch<GoalsCubit>();
+    return ListView.builder(
+      itemCount: goals.length,
+      itemBuilder: (context, index) {
+        final goal = goals[index];
 
-    return goalsCubit.state != null ? 
-      ListView.builder(
-        itemCount: goalsCubit.state?.length ?? 0,
-        itemBuilder: (context, index) {
-          final goal = goalsCubit.state![index];
-
-          return GoalCard(goal: goal);
-        },
-      )
-      : 
-      Text("no se pudo obtener las metas");
+        return GoalCard(goal: goal);
+      },
+    );
   }
 }

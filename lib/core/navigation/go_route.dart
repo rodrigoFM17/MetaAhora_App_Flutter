@@ -3,6 +3,7 @@ import 'package:meta_ahora/goals/presentation/screens/goals_screen.dart';
 import 'package:meta_ahora/user/presentation/screen/login_screen.dart';
 
 GoRouter goRouter = GoRouter(
+  initialLocation: "/login",
   routes: [
     GoRoute(
       path: "/login",

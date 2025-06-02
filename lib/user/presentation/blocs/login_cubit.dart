@@ -29,7 +29,7 @@ class LoginCubit extends Cubit<LoginState> {
     ));
 
     if (user != null) {
-      context.go("/");
+      context.go("/goals/${user.id}");
     } else {
       print("credenciales incorrectas");
     }

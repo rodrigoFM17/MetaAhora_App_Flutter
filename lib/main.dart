@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:meta_ahora/goals/presentation/screens/add_notes_screen.dart';
-import 'package:meta_ahora/goals/presentation/screens/goals_screen.dart';
-import 'package:meta_ahora/user/presentation/screen/login_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meta_ahora/core/navigation/go_route.dart';
+import 'package:meta_ahora/user/presentation/blocs/login_cubit.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginCubit>(
+          create: (context) => LoginCubit()
+        )
+      ], 
+      child: const MyApp()
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,15 +22,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
       title: 'METAhora',
-      initialRoute: "/login",
-      routes: {
-        // "/": (context) => NotesScreen(),
-        "/login" : (context) => LoginScreen(),
-        // "/notes/add" : (context) => AddNotesScreen()
-      },
     );
   }
 }
