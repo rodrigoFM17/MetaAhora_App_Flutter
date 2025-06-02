@@ -1,11 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:meta_ahora/share/widgets/app_bar.dart';
-import 'package:meta_ahora/notes/presentation/widgets/goal_list.dart';
+import 'package:meta_ahora/goals/presentation/widgets/goal_list.dart';
+import 'package:meta_ahora/user/presentation/blocs/login_cubit.dart';
 
-class NotesScreen extends StatelessWidget{
+class GoalsScreen extends StatelessWidget{
 
-  const NotesScreen({super.key});
+  final String userId;
+  const GoalsScreen({super.key, required this.userId});
 
   @override
   Widget build(BuildContext context) {

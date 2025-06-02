@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meta_ahora/notes/data/model/GoalDTO.dart';
+import 'package:meta_ahora/goals/data/model/GoalDTO.dart';
 
 class GoalCard extends StatelessWidget {
 

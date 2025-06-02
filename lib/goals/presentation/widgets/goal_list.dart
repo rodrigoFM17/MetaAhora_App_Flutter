@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta_ahora/notes/presentation/blocs/goals_cubit.dart';
-import 'package:meta_ahora/notes/presentation/widgets/goal_card.dart';
+import 'package:meta_ahora/goals/presentation/blocs/goals_cubit.dart';
+import 'package:meta_ahora/goals/presentation/widgets/goal_card.dart';
 
 class GoalList extends StatelessWidget {
   const GoalList({super.key});

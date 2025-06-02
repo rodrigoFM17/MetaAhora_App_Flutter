@@ -1,9 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_ahora/share/widgets/app_bar.dart';
 import 'package:meta_ahora/share/widgets/textfield.dart';
 import 'package:meta_ahora/user/data/model/loginDTO.dart';
 import 'package:meta_ahora/user/data/repository/user_repository.dart';
+import 'package:meta_ahora/user/presentation/blocs/login_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,19 +20,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  loginUser() async {
-    final user = await userRepository.login(LoginDTO(
-      email: _emailController.text, 
-      password: _passwordController.text
-    ));
-
-    if (user != null) {
-      Navigator.pushNamed(context, "/");
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+
+    final loginCubit = context.watch<LoginCubit>();
+
     return Scaffold(
       appBar: getNotesAppBar(context: context),
       backgroundColor: Color(0xFF232323),
@@ -40,12 +34,12 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomTextField(
-              controller: _emailController, 
+              onChanged: loginCubit.updateEmail,
               text: "Correo Electronico"
             ),
             SizedBox(height: 30),
             CustomTextField(
-              controller: _passwordController, 
+              onChanged: loginCubit.updatePassword,
               text: "Contraseña"
             ),
             SizedBox(height: 10),
@@ -63,7 +57,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius: BorderRadius.circular(5)
                   )
                 ),
-                onPressed: loginUser,
+                onPressed:() {
+                  loginCubit.loginUser(context);
+                },
                 child: Text(
                   "Iniciar Sesion", 
                   style: TextStyle(color: Colors.white)

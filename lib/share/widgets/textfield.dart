@@ -27,18 +27,18 @@ getTextField({
 class CustomTextField extends StatelessWidget {
 
   final String text;
-  final TextEditingController controller;
+  final void Function(String) onChanged;
 
   const CustomTextField({
     super.key,
-    required this.controller,
+    required this.onChanged,
     required this.text
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: controller,
+      onChanged: onChanged,
       style: TextStyle(
         color: Colors.white
       ),

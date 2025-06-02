@@ -2,11 +2,11 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:meta_ahora/notes/data/datasource/INoteRepository.dart';
-import 'package:meta_ahora/notes/data/model/GoalDTO.dart';
+import 'package:meta_ahora/goals/data/datasource/i_goal_repository.dart';
+import 'package:meta_ahora/goals/data/model/GoalDTO.dart';
 import 'package:meta_ahora/share/model/api_response.dart';
 
-class NoteRepository implements INoteRepository {
+class GoalRepository implements IGoalRepository {
 
   @override
   Future<List<GoalDTO>?> getAll(String userId) async {

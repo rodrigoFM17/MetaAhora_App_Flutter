@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meta_ahora/notes/presentation/screens/add_notes_screen.dart';
-import 'package:meta_ahora/notes/presentation/screens/notes_screen.dart';
+import 'package:meta_ahora/goals/presentation/screens/add_notes_screen.dart';
+import 'package:meta_ahora/goals/presentation/screens/goals_screen.dart';
 import 'package:meta_ahora/user/presentation/screen/login_screen.dart';
 
 void main() {
