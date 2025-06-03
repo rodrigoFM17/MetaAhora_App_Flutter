@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meta_ahora/goals/data/model/GoalDTO.dart';
+import 'package:meta_ahora/goals/data/model/goal_DTO.dart';
 import 'package:meta_ahora/goals/presentation/widgets/goal_card.dart';
 
 class GoalList extends StatelessWidget {

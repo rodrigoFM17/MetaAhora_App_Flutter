@@ -20,7 +20,7 @@ class GoalDTO {
   final String description;
   final State state;
   final int points;
-  final int endDate;
+  final int? endDate;
 
   GoalDTO({
     required this.id,
@@ -35,10 +35,10 @@ class GoalDTO {
     return GoalDTO(
       id: json["id"],
       description: json["description"],
-      endDate: json["endDate"],
       points: json["points"],
-      state: json["state"],
-      title: json["title"] 
+      state: json["state_id"] == 1 ? State.completed : json["state_id"] == 2 ? State.pending : State.failed,
+      title: json["title"] ,
+      endDate: json["end_date"]
     );
   }
 

@@ -2,9 +2,9 @@
 enum Routes {
   login(label: "/login"),
   register(label: "/register"),
-  addGoal(label: "/goals/new"),
+  addGoal(label: "/goals/new/:userId"),
   goals(label: "/user/goals/:id"),
-  particularGoal(label: "user/particular-goal/:id");
+  particularGoal(label: "/particular-goal/:id");
 
   final String label;
 

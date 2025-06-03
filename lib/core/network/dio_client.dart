@@ -1,5 +1,8 @@
 
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:meta_ahora/share/model/api_response.dart';
 
 class DioClient {
 
@@ -24,5 +27,47 @@ class DioClient {
     ));
   }
 
-  static DioClient get instance => _instance;
+  static Future<APIResponse<T>?> get<T> ({
+    required String path,
+    required T Function(dynamic json) fromJsonT
+  }) async {
+    try {
+      final res = await _instance.dio.get(path);
+
+      final json = jsonDecode(jsonEncode(res.data));
+      final apiRes = APIResponse.fromJson(
+        json, 
+        fromJsonT
+      );
+
+      return apiRes;
+    } catch(e) {
+      print("error en el post de dio: $e");
+      return null;
+    }
+  }
+
+  static Future<APIResponse<T>?> post<T>({
+    required String path, 
+    required Map<String, dynamic> body,
+    required T Function(dynamic json) fromJsonT
+  }) async {
+    try {
+      final res = await _instance.dio.post(
+        path,
+        data: body
+      );
+
+      final json = jsonDecode(jsonEncode(res.data));
+      final apiRes = APIResponse.fromJson(
+        json, 
+        fromJsonT
+      );
+
+      return apiRes;
+    } catch(e) {
+      print("error en el post de dio: $e");
+      return null;
+    }
+  }
 }

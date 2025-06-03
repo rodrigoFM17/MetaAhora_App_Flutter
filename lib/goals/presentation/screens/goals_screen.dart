@@ -19,6 +19,8 @@ class _GoalsScreenState extends State<GoalsScreen> {
   @override
   void initState() {
     super.initState();
+    GoalsCubit goalsCubit = context.read<GoalsCubit>();
+    goalsCubit.getGoals(widget.userId);
     
   }
 
@@ -27,11 +29,10 @@ class _GoalsScreenState extends State<GoalsScreen> {
   Widget build(BuildContext context) {
 
     GoalsCubit goalsCubit = context.watch<GoalsCubit>();
-    goalsCubit.getGoals(widget.userId);
 
     return Scaffold(
       backgroundColor: Color(0xFF232323),
-      appBar: getNotesAppBar(context: context, showAddButton: true),
+      appBar: getNotesAppBar(context: context, showAddButton: true, userId: widget.userId),
       body: GoalList(goals: goalsCubit.state ?? []),
     );
   }
