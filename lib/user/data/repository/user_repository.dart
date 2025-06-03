@@ -1,5 +1,8 @@
 
+import 'dart:convert';
+
 import 'package:meta_ahora/core/network/dio_client.dart';
+import 'package:meta_ahora/goals/data/model/GoalDTO.dart';
 import 'package:meta_ahora/share/model/api_response.dart';
 import 'package:meta_ahora/user/data/datasource/iuser_repository.dart';
 import 'package:meta_ahora/user/data/model/loginDTO.dart';
@@ -21,18 +24,34 @@ class UserRepository implements IUserRepository {
           "password": credentials.password
         }
       );
-      final apiRes = APIResponse.fromJson(res.data);
 
-      if (apiRes.data == null) {
-        return null;
-      }
+      final jsonRes = jsonDecode(jsonEncode(res.data));
+
+      final apiRes = APIResponse<List<UserDTO>>.fromJson(jsonRes, (data) => (data as List).map((user) => UserDTO.fromJson(user)).toList());
+      print(apiRes);
+      print("data: ${apiRes.data}");
+      return apiRes.data![0];
+
+      // final json = jsonDecode(res.data.jsify());
+
+      // print("json decoded: $json");
+
+      // final apiRes = APIResponse.fromJson(res.data);
+
+      // print("jsondecode $json");
+
+      // if (apiRes.data == null) {
+      //   return null;
+      // }
       
-      final user = UserDTO.fromJson(apiRes.data);
-      print(user);
-      return user;
+      // final user = UserDTO.fromJson(apiRes.data[0]);
+      // print(user);
+      // return user;
 
     } catch (e) {
+      print("error en repositorio usuario");
       print(e);
+
       return null;
     }
   }
@@ -50,12 +69,13 @@ class UserRepository implements IUserRepository {
         }
       );
 
-      final apiRes = APIResponse.fromJson(res.data);
+      final apiRes = jsonDecode(res.data) as APIResponse<List<UserDTO>?>;
+      print(apiRes);
       if(apiRes.data == null) {
         return null;
       }
-      final user = apiRes.data;
-      print(user);
+      final user = apiRes.data![0];
+      print("usuario: $user");
       return user;
 
     } catch (e) {

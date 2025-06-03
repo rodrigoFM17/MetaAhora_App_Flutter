@@ -1,13 +1,14 @@
 import 'dart:ffi';
 
 enum State {
-  completed("completado"),
-  pending("pendiente"),
-  failed("fallido");
+  completed("completado", 0xFF12D800),
+  pending("pendiente", 0xFFFFE205),
+  failed("fallido", 0xFFE00000);
 
   final String label;
+  final int color;
 
-  const State(this.label);
+  const State(this.label, this.color);
 }
 
 
@@ -19,7 +20,7 @@ class GoalDTO {
   final String description;
   final State state;
   final int points;
-  final Long endDate;
+  final int endDate;
 
   GoalDTO({
     required this.id,

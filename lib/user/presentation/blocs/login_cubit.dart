@@ -29,7 +29,7 @@ class LoginCubit extends Cubit<LoginState> {
 
     if (user != null) {
       print(Routes.goals.getParametredRoute(user.id));
-      context.go("/goals/${user.id}");
+      context.go(Routes.goals.getParametredRoute(user.id));
     } else {
       print("credenciales incorrectas");
 

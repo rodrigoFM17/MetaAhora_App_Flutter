@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:meta_ahora/core/navigation/routes.dart';
 import 'package:meta_ahora/goals/presentation/screens/goals_screen.dart';
-import 'package:meta_ahora/goals/presentation/screens/particular_goal.dart';
+import 'package:meta_ahora/goals/presentation/screens/particular_goal_screen.dart';
 import 'package:meta_ahora/user/presentation/screen/login_screen.dart';
 import 'package:meta_ahora/user/presentation/screen/register_screen.dart';
 
@@ -27,7 +27,7 @@ GoRouter goRouter = GoRouter(
       path: Routes.particularGoal.label,
       builder: (context, state) {
         final goalId = state.pathParameters["id"];
-        return ParticularGoal(goalId: goalId!);
+        return ParticularGoalScreen(goalId: goalId!);
       }
     )
   ]

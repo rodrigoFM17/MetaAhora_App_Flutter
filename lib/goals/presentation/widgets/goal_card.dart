@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meta_ahora/core/navigation/routes.dart';
 import 'package:meta_ahora/goals/data/model/GoalDTO.dart';
 
 class GoalCard extends StatelessWidget {
@@ -10,7 +11,7 @@ class GoalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.go(Route.),
+      onTap: () => context.go(Routes.particularGoal.getParametredRoute(goal.id)),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(5.0),
